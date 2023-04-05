@@ -1,6 +1,7 @@
 .box {
   height: 5.625rem;
-  max-width: 100%;
+
+  width: 5.625rem;
   color: aliceblue;
   display: flex;
   justify-content: center;
@@ -8,8 +9,7 @@
   background-color: rgb(52, 49, 49);
   box-shadow: 0 10px 10px rgba(0, 0, 0, 0.26);
   border-radius: 10px;
-  font-size: 25px;
-  transition: all 0.2s;
+  font-size: 1.2rem;
 }
 
 .green {
@@ -29,4 +29,9 @@
 .text {
   transform: rotateX(0deg);
   transition: all 1.5s;
+}
+@media only screen and (max-width: 400px) {
+  html {
+    font-size: 10px;
+  }
 }
