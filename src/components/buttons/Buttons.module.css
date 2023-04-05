@@ -1,0 +1,78 @@
+.buttonsContainer {
+  margin: 3rem auto;
+  max-width: 100%;
+  width: 30.25rem;
+  opacity: 1;
+  gap: 1px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s;
+}
+.rowButtons {
+  display: flex;
+  justify-content: space-between;
+  gap: 2px;
+  width: 100%;
+}
+.btn {
+  height: 3rem;
+  width: 3rem;
+  box-shadow: 5px 10px #888888;
+  background-color: rgb(52, 49, 49);
+  color: white;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  transition: all 0.2s;
+  overflow: hidden;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: rgb(68, 64, 64);
+  transition: all 0.2s;
+}
+.btnenter {
+  background-color: rgb(34, 31, 31);
+  color: white;
+  border-radius: 5px;
+  flex: 1;
+  box-shadow: 5px 10px #888888;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btnenter:hover {
+  background-color: rgb(50, 47, 47);
+  transition: all 0.2s;
+}
+
+.btndel {
+  background-color: rgb(34, 31, 31);
+  color: white;
+  border-radius: 5px;
+  flex: 1;
+  box-shadow: 5px 10px #888888;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btndel:hover {
+  background-color: rgb(50, 47, 47);
+  transition: all 0.2s;
+}
+.rowButtons_3 {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  width: 100%;
+}
+.rowButtons_2 {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  width: 100%;
+}
+.fade {
+  display: none;
+  transition: display 1s;
+}
