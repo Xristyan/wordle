@@ -2,6 +2,12 @@ import React, { useState, useReducer, useEffect } from "react";
 import GridContainer from "./components/GridContainer";
 import Header from "./components/header/Header";
 import RandomWord from "./components/functions/RandomWord";
+const rows = 6;
+const columns = 5;
+let boxesArray = [];
+for (let i = 0; i < rows * columns; i++) {
+  boxesArray[i] = { letter: "", id: Math.random().toString() };
+}
 const minMaxReducer = (state, action) => {
   if (action.type === "BOX_UPDATE") {
     return {
@@ -10,46 +16,15 @@ const minMaxReducer = (state, action) => {
     };
   }
 
-  return { Minvalue: 0, MaxValue: 4 };
+  return { Minvalue: 0, MaxValue: columns - 1 };
 };
-const wordle = RandomWord();
+const wordle = RandomWord().toUpperCase();
 function App() {
-  const [allBoxes, setAllBoxes] = useState([
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-    { letter: "", id: Math.random().toString() },
-  ]);
+  const [allBoxes, setAllBoxes] = useState(boxesArray);
   const [position, setPosition] = useState(0);
   const [minAndMax, dispachMinAndMax] = useReducer(minMaxReducer, {
     Minvalue: 0,
-    MaxValue: 4,
+    MaxValue: columns - 1,
   });
 
   const [currWord, setCurrWord] = useState("");
@@ -71,7 +46,7 @@ function App() {
         });
         setBoolArray((prevBoolArray) => {
           return [
-            ...prevBoolArray.slice(0, minAndMax.Minvalue - 5),
+            ...prevBoolArray.slice(0, minAndMax.Minvalue - columns),
             ...[true, true, true, true, true],
           ];
         });
@@ -81,7 +56,7 @@ function App() {
 
         setBoolArray((prevBoolArray) => {
           return [
-            ...prevBoolArray.slice(0, minAndMax.Minvalue - 5),
+            ...prevBoolArray.slice(0, minAndMax.Minvalue - columns),
             ...checkedArray,
           ];
         });
@@ -93,12 +68,12 @@ function App() {
 
         setBoolArray((prevBoolArray) => {
           return [
-            ...prevBoolArray.slice(0, minAndMax.Minvalue - 5),
+            ...prevBoolArray.slice(0, minAndMax.Minvalue - columns),
             ...checkedArray,
           ];
         });
       }
-      if (position === 30 && winnerState === false) {
+      if (position === columns * rows && winnerState === false) {
         alert(`The word is ${wordle}`);
       }
     }, 100);
@@ -136,9 +111,8 @@ function App() {
     }
     if (letter === "ENTER") {
       if (position !== minAndMax.MaxValue + 1) return;
-      // if (position === 30) return;
 
-      dispachMinAndMax({ type: "BOX_UPDATE", val: 5 });
+      dispachMinAndMax({ type: "BOX_UPDATE", val: columns });
       updateCurrentWordHandler();
     }
   };
@@ -173,7 +147,11 @@ function App() {
     setCurrWord(currentWord.join(""));
   };
 
-  // Decreasing Position
+  /**
+   * Decreasing Position
+   * @param {number} num
+   * @returns {void}
+   */
   const decreasePosition = (num) => {
     if (position === minAndMax.Minvalue) return;
     setPosition((prevPositon) => {
@@ -188,7 +166,7 @@ function App() {
       return prevPositon + 1;
     });
   };
-
+  console.log(boolArray);
   return (
     <div>
       <Header />

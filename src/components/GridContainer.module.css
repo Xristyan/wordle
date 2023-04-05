@@ -4,7 +4,11 @@
   width: 28.5rem;
   display: grid;
   gap: 1px;
-
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(6, 1fr);
 }
+/* @media only screen and (max-width: 400px) {
+  .gridContainer {
+    width: 20rem;
+  }
+} */
